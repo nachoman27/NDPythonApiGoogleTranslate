@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traductor Multilingüe</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>¿Qué quieres traducir?</h1>
+        <form method="POST">
+            <textarea name="text" placeholder="Introduce el texto en español"></textarea><br>
+            <button type="submit">Traducir</button>
+        </form>
+        
+        {% if translations %}
+        <div class="translation-container">
+            <div class="translation active" id="english">
+                <h2>Inglés</h2>
+                <p>{{ translations['en'] }}</p>
+            </div>
+            <div class="translation" id="french">
+                <h2>Francés</h2>
+                <p>{{ translations['fr'] }}</p>
+            </div>
+            <div class="translation" id="german">
+                <h2>Alemán</h2>
+                <p>{{ translations['de'] }}</p>
+            </div>
+            <div class="translation" id="italian">
+                <h2>Italiano</h2>
+                <p>{{ translations['it'] }}</p>
+            </div>
+            <div class="translation" id="portuguese">
+                <h2>Portugués</h2>
+                <p>{{ translations['pt'] }}</p>
+            </div>
+            <button id="nextBtn">➡️</button>
+        </div>
+        {% endif %}
+    </div>
+
+    <script>
+        let currentIndex = 0;
+        const translations = document.querySelectorAll('.translation');
+        const backgrounds = {
+            'english': 'url(/static/england-background.jpg)',
+            'french': 'url(/static/france-flag.jpg)',
+            'german': 'url(/static/germany-flag.jpg)',
+            'italian': 'url(/static/italy-flag.jpg)',
+            'portuguese': 'url(/static/portugal-flag.jpg)'
+        };
+        
+        document.getElementById('nextBtn').addEventListener('click', function() {
+            translations[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % translations.length;
+            translations[currentIndex].classList.add('active');
+            
+            // Cambiar el fondo de acuerdo al idioma
+            const currentLang = translations[currentIndex].id;
+            document.body.style.backgroundImage = backgrounds[currentLang];
+        });
+    </script>
+</body>
+</html>
+
