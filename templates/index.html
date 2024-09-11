@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Traductor Multilingüe</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 </head>
+
 <body>
+    <div class="small-image-container">
+        <img id="flag" src="{{ url_for('static', filename='france-flag.png') }}" alt="Bandera">
+    </div>
+    
     <div class="container">
         <h1>¿Qué quieres traducir?</h1>
         <form method="POST">
             <textarea name="text" placeholder="Introduce el texto en español"></textarea><br>
             <button type="submit">Traducir</button>
         </form>
-        
+
         {% if translations %}
         <div class="translation-container">
             <div class="translation active" id="english">
@@ -45,23 +51,36 @@
         let currentIndex = 0;
         const translations = document.querySelectorAll('.translation');
         const backgrounds = {
-            'english': 'url(/static/england-background.jpg)',
-            'french': 'url(/static/france-flag.jpg)',
-            'german': 'url(/static/germany-flag.jpg)',
-            'italian': 'url(/static/italy-flag.jpg)',
-            'portuguese': 'url(/static/portugal-flag.jpg)'
+            'english': 'url({{ url_for("static", filename="england-background-p.jpg") }})',
+            'french': 'url({{ url_for("static", filename="france-p.jpg") }})',
+            'german': 'url({{ url_for("static", filename="germany-p.jpg") }})',
+            'italian': 'url({{ url_for("static", filename="italy-p.jpg") }})',
+            'portuguese': 'url({{ url_for("static", filename="portugal-p.jpg") }})'
         };
-        
-        document.getElementById('nextBtn').addEventListener('click', function() {
+
+        const flags = {
+            'english': '{{ url_for("static", filename="england-background.jpg") }}',
+            'french': '{{ url_for("static", filename="france-flag.jpg") }}',
+            'german': '{{ url_for("static", filename="germany-flag.jpg") }}',
+            'italian': '{{ url_for("static", filename="italy-flag.jpg") }}',
+            'portuguese': '{{ url_for("static", filename="portugal-flag.jpg") }}'
+        };
+
+        document.getElementById('nextBtn').addEventListener('click', function () {
             translations[currentIndex].classList.remove('active');
             currentIndex = (currentIndex + 1) % translations.length;
             translations[currentIndex].classList.add('active');
-            
+
             // Cambiar el fondo de acuerdo al idioma
             const currentLang = translations[currentIndex].id;
             document.body.style.backgroundImage = backgrounds[currentLang];
+            document.body.style.backgroundSize = 'cover';
+            document.body.style.backgroundPosition = 'center';
+
+            // Cambiar la bandera pequeña
+            document.getElementById('flag').src = flags[currentLang];
         });
     </script>
 </body>
-</html>
 
+</html>

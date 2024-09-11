@@ -10,8 +10,6 @@ def translate_text():
     
     if request.method == "POST":
         text = request.form["text"]
-        
-        # Lista de idiomas de destino
         languages = ['en', 'fr', 'de', 'it', 'pt']  # Inglés, Francés, Alemán, Italiano, Portugués
         
         for lang in languages:
