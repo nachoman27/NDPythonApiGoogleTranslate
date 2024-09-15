@@ -38,9 +38,12 @@ textarea {
     border-radius: 5px;
     border: 1px solid #ccc;
     font-size: 16px;
+    box-sizing: border-box; 
 }
 
 button[type="submit"] {
+    width: 100%;
+    max-width: 700px;
     padding: 10px 20px;
     background-color: #28a745;
     color: white;
@@ -48,6 +51,7 @@ button[type="submit"] {
     border-radius: 5px;
     cursor: pointer;
     font-size: 18px;
+    margin: auto;
 }
 
 button[type="submit"]:hover {
@@ -55,10 +59,9 @@ button[type="submit"]:hover {
 }
 
 .translation-container {
-    position: relative;
     width: 100%;
     max-width: 700px;
-    margin-top: 20px;
+    margin: 20px auto; 
 }
 
 .translation {
@@ -66,6 +69,10 @@ button[type="submit"]:hover {
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.9);
     border-radius: 10px;
+    width: 100%;
+    max-width: 700px;
+    box-sizing: border-box;
+    margin: auto; 
 }
 
 .translation.active {
@@ -83,18 +90,16 @@ p {
 }
 
 #nextBtn {
-    position: absolute;
-    right: -50px;
-    top: 50%;
-    transform: translateY(-50%);
+    width: 100%;
+    max-width: 700px;
+    padding: 10px 20px;
     background-color: #007bff;
     color: white;
     border: none;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    border-radius: 5px;
     cursor: pointer;
-    font-size: 24px;
+    font-size: 18px;
+    margin: 20px auto 0; 
 }
 
 #nextBtn:hover {
@@ -105,9 +110,10 @@ p {
     position: absolute;
     top: 10px;
     right: 10px;
+    display: none;
 }
 
 .small-image-container img {
-    width: 80px; /* Tamaño pequeño de la bandera */
+    width: 80px;
     height: auto;
 }

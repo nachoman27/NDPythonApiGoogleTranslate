@@ -42,7 +42,7 @@
                 <h2>Portugués</h2>
                 <p>{{ translations['pt'] }}</p>
             </div>
-            <button id="nextBtn">➡️</button>
+            <button id="nextBtn">Siguiente Idioma</button>
         </div>
         {% endif %}
     </div>
@@ -71,16 +71,18 @@
             currentIndex = (currentIndex + 1) % translations.length;
             translations[currentIndex].classList.add('active');
 
-            // Cambiar el fondo de acuerdo al idioma
-            const currentLang = translations[currentIndex].id;
+            
+            const currentLang = translations[currentIndex].id; // Cambiar el fondo de acuerdo al idioma
             document.body.style.backgroundImage = backgrounds[currentLang];
             document.body.style.backgroundSize = 'cover';
             document.body.style.backgroundPosition = 'center';
 
-            // Cambiar la bandera pequeña
-            document.getElementById('flag').src = flags[currentLang];
+            
+            document.getElementById('flag').src = flags[currentLang]; // Cambiar la bandera pequeña
+
+            
+            document.querySelector('.small-image-container').style.display = 'block'; // Mostrar la bandera si está oculta
         });
     </script>
 </body>
-
 </html>
